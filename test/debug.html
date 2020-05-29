@@ -3,7 +3,13 @@
         <link rel="stylesheet" href="/test/debug.css" />
         <script type="module" src="/build/main.js"></script>
     </head>
-    <body>
-        <element-component></element-component>
+    <body onload="load()">
+        <tree-component></tree-component>
     </body>
+    <script>
+        function load() {
+            const tree = document.querySelector('tree-component');
+            fetch('/test/resources/tree.json').then(file => file.json()).then(json => tree.add(json));
+        }
+    </script>
 </html>

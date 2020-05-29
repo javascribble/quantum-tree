@@ -1,0 +1,23 @@
+* { 
+    user-select: none; 
+}
+
+[selected] { 
+    background-color: var(--primary-selection-color); 
+}
+
+summary { 
+    position: relative; 
+    outline: none; 
+    width: 21px; 
+}
+
+.title { 
+    display: flex; 
+    justify-content: space-between; 
+}
+
+.container { 
+    position: absolute; 
+    width: 100%; 
+}
