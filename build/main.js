@@ -54,13 +54,21 @@ var styles = `* {
 
 summary { 
     position: relative; 
-    outline: none; 
-    width: 21px; 
+    outline: none;
+    width: 21px;
 }
 
 .title { 
     display: flex; 
-    justify-content: space-between; 
+    justify-content: space-between;
+}
+
+.name {
+    outline: none;
+}
+
+.icon {
+    font-size: 0.95em;
 }
 
 .container { 
@@ -74,7 +82,7 @@ const collapseIcon = { code: 8793, title: "collapse" };
 const childIcons = [expandIcon];
 const parentIcons = [expandIcon, collapseIcon];
 
-const icon = (model) => `<span title="${model.title}">&#${model.code};</span>`;
+const icon = (model) => `<span class="icon" title="${model.title}">&#${model.code};</span>`;
 
 const menu = (models) => `${name}<div class="menu">${repeat(icon, models)}</div>`;
 
@@ -82,7 +90,7 @@ const childObject = template(`<div class="title">${menu(childIcons)}</div>`);
 
 const parentObject = template(`<div class="title container">${menu(parentIcons)}</div>${details}`);
 
-const tree = template('', styles);
+const tree = template(``, styles);
 
 const attribute = 'selected';
 

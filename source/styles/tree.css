@@ -8,13 +8,21 @@
 
 summary { 
     position: relative; 
-    outline: none; 
-    width: 21px; 
+    outline: none;
+    width: 21px;
 }
 
 .title { 
     display: flex; 
-    justify-content: space-between; 
+    justify-content: space-between;
+}
+
+.name {
+    outline: none;
+}
+
+.icon {
+    font-size: 0.95em;
 }
 
 .container { 
