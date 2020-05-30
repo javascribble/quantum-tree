@@ -6,15 +6,16 @@ import styles from '../styles/tree.css';
 const expandIcon = { code: 8794, title: "expand" };
 const collapseIcon = { code: 8793, title: "collapse" };
 
-const childIcons = [expandIcon];
-const parentIcons = [expandIcon, collapseIcon];
-
 const icon = (model) => `<span class="icon" title="${model.title}">&#${model.code};</span>`;
 
-const menu = (models) => `${name}<div class="menu">${repeat(icon, models)}</div>`;
-
-export const childObject = template(`<div class="title">${menu(childIcons)}</div>`);
-
-export const parentObject = template(`<div class="title container">${menu(parentIcons)}</div>${details}`);
+export const branch = template(`
+<div>
+    <div class="title" draggable="true">
+        ${name}
+        <div class="menu">${repeat(icon, [expandIcon, collapseIcon])}</div>
+    </div>
+    ${details}
+<div>
+`);
 
 export const tree = template(``, styles);

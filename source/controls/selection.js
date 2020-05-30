@@ -10,7 +10,7 @@ const selected = element => element.hasAttribute(attribute);
 
 const toggleSelection = element => selected(element) ? deselect(element) : select(element);
 
-export const handleSelection = (tree, event, elements) => {
+export const handleSingleSelect = (tree, event, elements) => {
     if (event.ctrlKey) {
         elements.forEach(toggleSelection);
     } else if (event.shiftKey) {
@@ -19,4 +19,8 @@ export const handleSelection = (tree, event, elements) => {
         queryAll(tree, `[${attribute}]`).forEach(deselect);
         elements.forEach(select);
     }
+};
+
+export const handleMultiSelect = () => {
+
 };

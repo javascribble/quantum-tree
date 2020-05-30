@@ -1,19 +1,24 @@
-* { 
-    user-select: none; 
+* {
+    user-select: none;
 }
 
-[selected] { 
-    background-color: var(--primary-selection-color); 
+[selected] {
+    background-color: var(--primary-selection-color);
 }
 
-summary { 
-    position: relative; 
+summary {
+    position: relative;
     outline: none;
     width: 21px;
 }
 
+.summary-hack {
+    position: absolute;
+    width: 100%; 
+}
+
 .title { 
-    display: flex; 
+    display: flex;
     justify-content: space-between;
 }
 
@@ -23,9 +28,4 @@ summary {
 
 .icon {
     font-size: 0.95em;
-}
-
-.container { 
-    position: absolute; 
-    width: 100%; 
 }
