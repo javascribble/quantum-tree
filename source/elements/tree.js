@@ -1,10 +1,10 @@
-import { Component, append, clone, define, query, preventDefault, stopPropagation } from '@javascribble/quantum';
+import { Quantum, append, clone, define, query, preventDefault, stopPropagation } from '@javascribble/quantum';
 import { handleSingleSelect } from '../controls/selection.js';
 import { tree, branch } from '../templates/tree.js';
 
 const indent = 20;
 
-export class Tree extends Component {
+export class Tree extends Quantum {
     constructor() {
         super(tree);
     }

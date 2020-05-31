@@ -4,11 +4,11 @@
         <script type="module" src="/build/main.js"></script>
     </head>
     <body onload="load()">
-        <tree-component></tree-component>
+        <quantum-tree></quantum-tree>
     </body>
     <script>
         function load() {
-            const tree = document.querySelector('tree-component');
+            const tree = document.querySelector('quantum-tree');
             fetch('/test/resources/tree.json').then(file => file.json()).then(json => tree.add(json));
         }
     </script>
