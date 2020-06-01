@@ -5,7 +5,7 @@
     "license": "MIT",
     "dependencies": {},
     "devDependencies": {
-        "@javascribble/quantum": "^0.2.13",
+        "@javascribble/quantum": "^0.2.16",
         "@javascribble/rollup-plugin-modulify": "*",
         "@rollup/plugin-node-resolve": "*",
         "npm-run-all": "*",

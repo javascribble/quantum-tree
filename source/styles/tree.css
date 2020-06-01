@@ -9,6 +9,7 @@
 summary {
     position: relative;
     outline: none;
+    display: none;
     width: 21px;
 }
 
