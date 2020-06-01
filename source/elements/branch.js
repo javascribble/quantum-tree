@@ -1,4 +1,4 @@
-import { Quantum, define, query, preventDefault, stopPropagation } from '@javascribble/quantum';
+import { Quantum, define, append, clone, query, preventDefault, stopPropagation } from '@javascribble/quantum';
 import { handleSingleSelect } from '../controls/selection.js';
 import { branch } from '../templates/branch.js';
 
@@ -6,56 +6,61 @@ const indent = 20;
 
 export class Branch extends Quantum {
     constructor() {
-        super(branch);
+        super();
 
-        // const singleIndent = level * indent;
-        // const doubleIndent = ++level * indent;
+        this.appendChild(clone(branch));
+        const root = this;
 
-        // const title = query(template, '.title');
-        // title.onclick = (event) => handleSingleSelect(this.shadowRoot, event, [event.target]);
-        // title.ondrag = event => event.dataTransfer.setData('id', `#${event.target.parentNode.id}`);
-        // title.ondragover = preventDefault;
-        // title.ondragleave = event => {
+        this.details = query(root, 'details');
 
-        // };
+        const title = query(root, '.title');
+        title.onclick = (event) => handleSingleSelect(this.getRootNode(), event, [event.target]);
+        title.ondrag = event => event.dataTransfer.setData('id', `#${event.target.parentNode.id}`);
+        title.ondragover = preventDefault;
+        title.ondragleave = event => { };
+        title.ondrop = event => {
+            preventDefault(event);
+            const element = query(root, event.dataTransfer.getData('id'));
+            event.target.parentNode.parentNode.appendChild(element);
+        };
 
-        // title.ondrop = event => {
-        //     preventDefault(event);
-        //     const element = query(this.shadowRoot, event.dataTransfer.getData('id'));
-        //     event.target.parentNode.parentNode.appendChild(element);
-        // };
+        const name = query(root, '.name');
+        name.onclick = stopPropagation;
+        this.updateName = (text) => name.innerText = text;
 
-        // const name = query(template, '.name');
-        // name.style.marginLeft = `${doubleIndent}px`;
-        // name.innerText = object.name;
-        // name.onclick = stopPropagation;
+        const menu = query(root, '.menu');
+        menu.onclick = stopPropagation;
 
-        // const menu = query(template, '.menu');
-        // menu.onclick = stopPropagation;
+        const summary = query(root, 'summary');
+        this.showSummary = () => {
+            summary.style.display = 'block';
+            title.classList.add('summary-hack');
+        };
 
-        // const details = query(template, 'details');
-        // const summary = query(details, 'summary');
-        // summary.style.paddingLeft = `${singleIndent}px`;
-        // if (object.children && object.children.length > 0) {
-        //     title.classList.add('summary-hack');
-        //     addObjects(object.children, details, level);
-        // } else {
-        //     summary.style.display = 'none';
-        // }
-
-
-
-        // if (object.children && object.children.length > 0) {
-        //     //branch.showSummary();
-        //     addObjects(object.children, branch, level++);
-        // }
+        this.updateLevel = (level) => {
+            this.level = level;
+            name.style.marginLeft = `${(level + 1) * indent}px`;
+            summary.style.paddingLeft = `${level * indent}px`;
+        };
     }
 
     static attributes = {
-        title: (element, value) => {
-
+        name: (element, value) => {
+            element.updateName(value);
         }
     };
+
+    add() {
+        this.showSummary();
+        const branch = new Branch();
+        branch.updateLevel(this.level + 1);
+        return append(this.details, branch);
+    }
+
+    remove(branch) {
+        // TODO: Remove branch.
+        // TODO: If last child set summary display: none.
+    }
 }
 
 define(Branch);

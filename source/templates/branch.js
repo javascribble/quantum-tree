@@ -9,11 +9,9 @@ const collapseIcon = { code: 8793, title: "collapse" };
 const icon = (model) => `<span class="icon" title="${model.title}">&#${model.code};</span>`;
 
 export const branch = template(`
-<div>
-    <div class="title" draggable="true">
-        ${name}
-        <div class="menu">${repeat(icon, [expandIcon, collapseIcon])}</div>
-    </div>
-    ${details}
-<div>
+<div class="title" draggable="true">
+    ${name}
+    <div class="menu">${repeat(icon, [expandIcon, collapseIcon])}</div>
+</div>
+${details}
 `, styles);

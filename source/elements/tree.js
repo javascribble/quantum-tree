@@ -1,14 +1,18 @@
-import { Quantum, append, define } from '@javascribble/quantum';
+import { Quantum, define, append, shadow, clone } from '@javascribble/quantum';
 import { tree } from '../templates/tree.js';
 import { Branch } from './branch.js';
 
 export class Tree extends Quantum {
     constructor() {
-        super(tree);
+        super();
+
+        append(shadow(this), clone(tree));
     }
 
     add() {
-        return append(this.shadowRoot, new Branch());
+        const branch = new Branch();
+        branch.updateLevel(0);
+        return append(this.shadowRoot, branch);
     }
 
     remove(branch) {

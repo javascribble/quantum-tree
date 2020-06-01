@@ -8,10 +8,16 @@
     </body>
     <script>
         function load() {
-            fetch('/test/resources/tree.json').then(file => file.json()).then(objects => {
-                const tree = document.querySelector('quantum-tree');
-                objects.forEach(object => tree.add(object));
-            });
+            const tree = document.querySelector('quantum-tree');
+            const addBranch = (object, parent) => {
+                const branch = parent.add();
+                branch.name = object.name;
+                if (object.children) {
+                    object.children.forEach(child => addBranch(child, branch));
+                }
+            };
+
+            fetch('/test/resources/tree.json').then(file => file.json()).then(objects => objects.forEach(object => addBranch(object, tree)));
         }
     </script>
 </html>
