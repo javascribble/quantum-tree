@@ -1,4 +1,4 @@
-import { Quantum, define, append, shadow, clone, query, preventDefault, stopPropagation } from '@javascribble/quantum';
+import { Quantum, define, append, shadow, clone, query, preventDefault } from '@javascribble/quantum';
 import { handleSingleSelect } from '../controls/selection.js';
 import { tree } from '../templates/tree.js';
 
@@ -11,15 +11,18 @@ export class Tree extends Quantum {
 
         const slot = root.querySelector('slot');
         slot.addEventListener('slotchange', (event) => {
-            slot.assignedElements();
+            for (const branch of slot.assignedElements()) {
+
+            }
         });
 
         const draggable = query(root, '[draggable]');
-        draggable.onclick = preventDefault;
-        //draggable.onclick = (event) => handleSingleSelect(this.getRootNode(), event, [event.target]);
+        const highlight = query(root, '#highlight');
+        draggable.onclick = (event) => {
+            handleSingleSelect(this.getRootNode(), event, [highlight]);
+            preventDefault(event);
+        };
 
-        // const title = query(root, '#title');
-        // title.onclick = (event) => handleSingleSelect(this.getRootNode(), event, [event.target]);
         // title.ondrag = event => event.dataTransfer.setData('id', `#${event.target.parentNode.id}`);
         // title.ondragover = preventDefault;
         // title.ondragleave = event => { };
@@ -40,14 +43,28 @@ export class Tree extends Quantum {
 
         const name = query(root, '#name');
         name.onclick = preventDefault;
-        this.updateName = (text) => name.innerText = text;
+        this.renderName = (text) => name.innerText = text;
     }
 
     static attributes = {
         name: (element, value) => {
-            element.updateName(value);
+            element.renderName(value);
+        },
+        selected: (element, value) => {
+
+        },
+        expanded: (element, value) => {
+
         }
     };
+
+    expand() {
+
+    }
+
+    collapse() {
+
+    }
 }
 
 define(Tree);

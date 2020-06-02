@@ -1,21 +1,21 @@
 [
     {
-        "name": "test 1",
+        "name": "json test 1",
         "children": [
             {
-                "name": "test 3",
+                "name": "json test 2",
                 "children": [
                     {
-                        "name": "test 4",
+                        "name": "json test 3",
                         "children": [
                             {
-                                "name": "test 6",
+                                "name": "json test 4",
                                 "children": []
                             }
                         ]
                     },
                     {
-                        "name": "test 5",
+                        "name": "json test 5",
                         "children": []
                     }
                 ]
@@ -23,15 +23,7 @@
         ]
     },
     {
-        "name": "test 5",
-        "children": []
-    },
-    {
-        "name": "test 3",
-        "children": []
-    },
-    {
-        "name": "test 4",
+        "name": "json test 5",
         "children": []
     }
 ]

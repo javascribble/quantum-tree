@@ -3,24 +3,24 @@
         <link rel="stylesheet" href="/test/debug.css" />
         <script type="module" src="/build/main.js"></script>
         <script type="module">
-            //import { Tree } from '/build/main.js';
+            import { Tree } from '/build/main.js';
 
-            // const tree = document.querySelector('quantum-tree');
-            // const add = (object, parent) => {
-            //     const tree = new Tree();
-            //     tree.name = object.name;
-            //     for (const child of object.children) {
-            //         add(child, tree)
-            //     }
+            const root = document.querySelector('#root');
+            const add = (object, parent) => {
+                const tree = new Tree();
+                tree.name = object.name;
+                for (const child of object.children) {
+                    add(child, tree)
+                }
 
-            //     parent.appendChild(tree);
-            // };
+                parent.appendChild(tree);
+            };
 
-            // fetch('/test/resources/tree.json').then(file => file.json()).then(objects => objects.forEach(object => add(object, tree)));
+            fetch('/test/resources/tree.json').then(file => file.json()).then(objects => objects.forEach(object => add(object, root)));
         </script>
     </head>
     <body>
-        <quantum-tree name="added by tag">
+        <quantum-tree id="root" name="added by tag">
             <quantum-tree name="branch">
                 <quantum-tree name="nested branch"></quantum-tree>
             </quantum-tree>
