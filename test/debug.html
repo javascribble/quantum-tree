@@ -2,22 +2,28 @@
     <head>
         <link rel="stylesheet" href="/test/debug.css" />
         <script type="module" src="/build/main.js"></script>
-    </head>
-    <body onload="load()">
-        <quantum-tree></quantum-tree>
-    </body>
-    <script>
-        function load() {
-            const tree = document.querySelector('quantum-tree');
-            const addBranch = (object, parent) => {
-                const branch = parent.add();
-                branch.name = object.name;
-                if (object.children) {
-                    object.children.forEach(child => addBranch(child, branch));
-                }
-            };
+        <script type="module">
+            //import { Tree } from '/build/main.js';
 
-            fetch('/test/resources/tree.json').then(file => file.json()).then(objects => objects.forEach(object => addBranch(object, tree)));
-        }
-    </script>
+            // const tree = document.querySelector('quantum-tree');
+            // const add = (object, parent) => {
+            //     const tree = new Tree();
+            //     tree.name = object.name;
+            //     for (const child of object.children) {
+            //         add(child, tree)
+            //     }
+
+            //     parent.appendChild(tree);
+            // };
+
+            // fetch('/test/resources/tree.json').then(file => file.json()).then(objects => objects.forEach(object => add(object, tree)));
+        </script>
+    </head>
+    <body>
+        <quantum-tree name="added by html">
+            <quantum-tree name="html branch">
+                <quantum-tree name="nested html branch"></quantum-tree>
+            </quantum-tree>
+        </quantum-tree>
+    </body>
 </html>
