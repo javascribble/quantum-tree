@@ -2,40 +2,40 @@
     user-select: none;
 }
 
-[selected] {
-    background-color: var(--primary-selection-color);
-}
-
-[draggable] {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-}
-
-[contenteditable] {
-    outline: none;
-    min-width: 20px; 
-}
-
 ::slotted(*) {
+    display: inline-block;
     margin-left: 20px;
 }
 
-details {
-    display: inline-block;
+[selected] {
+    background-color: var(--primary-selection-color);   
+}
+
+[draggable] {
 }
 
 summary {
     outline: none;
-    white-space: nowrap;
 }
 
-.icons {
+#title {
+    display: inline-flex;
+}
+
+#name {
+    outline: none;
+    min-width: 20px;
+}
+
+#menu {
     position: absolute;
     right: 0;
 }
 
-.icon {
-    font-size: 0.95em;
+#highlight {
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    z-index: -1;
 }

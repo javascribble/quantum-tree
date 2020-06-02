@@ -14,10 +14,11 @@ export class Tree extends Quantum {
             slot.assignedElements();
         });
 
-        //const draggable = query(root, '[draggable]');
+        const draggable = query(root, '[draggable]');
+        draggable.onclick = preventDefault;
         //draggable.onclick = (event) => handleSingleSelect(this.getRootNode(), event, [event.target]);
 
-        // const title = query(root, '.title');
+        // const title = query(root, '#title');
         // title.onclick = (event) => handleSingleSelect(this.getRootNode(), event, [event.target]);
         // title.ondrag = event => event.dataTransfer.setData('id', `#${event.target.parentNode.id}`);
         // title.ondragover = preventDefault;
@@ -28,11 +29,17 @@ export class Tree extends Quantum {
         //     event.target.parentNode.parentNode.appendChild(element);
         // };
 
-        const icons = query(root, '.icons');
-        icons.onclick = preventDefault; //stopPropagation
+        const expand = query(root, '#expand');
+        expand.onclick = console.log;
 
-        const name = query(root, '.name');
-        name.onclick = preventDefault; //stopPropagation
+        const collapse = query(root, '#collapse');
+        collapse.onclick = console.log;
+
+        const menu = query(root, '#menu');
+        menu.onclick = preventDefault;
+
+        const name = query(root, '#name');
+        name.onclick = preventDefault;
         this.updateName = (text) => name.innerText = text;
     }
 

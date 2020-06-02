@@ -1,10 +1,14 @@
 <details>
     <summary>
-        <span class="name" contenteditable></span>
-        <span class="icons">
-            <span class="icon" title="expand">&#8794;</span>
-            <span class="icon" title="collapse">&#8793;</span>
-        </span>
+        <div id="title">
+            <div id="name" contenteditable></div>
+            <div draggable></div>
+            <div id="menu">
+                <span id="expand" title="expand">&#8794;</span>
+                <span id="collapse" title="collapse">&#8793;</span>
+            </div>
+        </div>
+        <div id="highlight">&nbsp;</div>
     </summary>
     <slot></slot>
 </details>
