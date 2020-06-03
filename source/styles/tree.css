@@ -7,11 +7,11 @@
     border-left: solid 1px;
     margin-left: 5px;
     padding-left: 5px;
-    width: calc(100% - 10px);
+    width: calc(100% - 11px);
 }
 
 [selected] {
-    background-color: var(--primary-selection-color);   
+    background-color: var(--primary-selection-color);
 }
 
 [draggable] {
@@ -36,7 +36,7 @@ summary, #name {
     padding-right: 5px;
 }
 
-#highlight {
+#selection { 
     display: inline-block;
     position: absolute;
     left: 0;

@@ -1,69 +1,32 @@
 import { Quantum, define, append, shadow, clone, query, preventDefault } from '@javascribble/quantum';
-import { handleSingleSelect } from '../controls/selection.js';
+import { renderSelected } from '../attributes/selected.js';
+import { renderName } from '../attributes/name.js';
+import { renderOpen } from '../attributes/open.js';
+import { raiseSelect } from '../events/select.js';
 import { tree } from '../templates/tree.js';
 
 export class Tree extends Quantum {
+    static attributes = {
+        name: renderName,
+        open: renderOpen,
+        selected: renderSelected,
+    };
+
     constructor() {
         super();
 
         const root = shadow(this);
         append(root, clone(tree));
 
-        const slot = root.querySelector('slot');
-        slot.addEventListener('slotchange', (event) => {
-            for (const branch of slot.assignedElements()) {
+        query(root, '[draggable]').onclick = raiseSelect(this);
+        query(root, '#menu').onclick = preventDefault;
+        query(root, '#expand').onclick = (event) => this.open = true;
+        query(root, '#collapse').onclick = (event) => this.open = false;
 
-            }
-        });
-
-        const draggable = query(root, '[draggable]');
-        const highlight = query(root, '#highlight');
-        draggable.onclick = (event) => {
-            handleSingleSelect(this.getRootNode(), event, [highlight]);
-            preventDefault(event);
-        };
-
-        // title.ondrag = event => event.dataTransfer.setData('id', `#${event.target.parentNode.id}`);
-        // title.ondragover = preventDefault;
-        // title.ondragleave = event => { };
-        // title.ondrop = event => {
-        //     preventDefault(event);
-        //     const element = query(root, event.dataTransfer.getData('id'));
-        //     event.target.parentNode.parentNode.appendChild(element);
-        // };
-
-        const expand = query(root, '#expand');
-        expand.onclick = console.log;
-
-        const collapse = query(root, '#collapse');
-        collapse.onclick = console.log;
-
-        const menu = query(root, '#menu');
-        menu.onclick = preventDefault;
-
-        const name = query(root, '#name');
-        name.onclick = preventDefault;
-        this.renderName = (text) => name.innerText = text;
-    }
-
-    static attributes = {
-        name: (element, value) => {
-            element.renderName(value);
-        },
-        selected: (element, value) => {
-
-        },
-        expanded: (element, value) => {
-
-        }
-    };
-
-    expand() {
-
-    }
-
-    collapse() {
-
+        this.detailsElement = query(root, 'details');
+        this.selectionElement = query(root, '#selection');
+        this.nameElement = query(root, '#name');
+        this.nameElement.onclick = preventDefault;
     }
 }
 

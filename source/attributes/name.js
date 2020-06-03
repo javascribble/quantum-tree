@@ -1,0 +1,1 @@
+export const renderName = (element, value) => element.nameElement.innerText = value;
