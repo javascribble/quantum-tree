@@ -1,3 +1,3 @@
-import { setTyped } from '@javascribble/quantum';
+import { setTypedAttribute } from '@javascribble/quantum';
 
-export const renderOpen = (element, value) => setTyped(element.detailsElement, 'open', value);
+export const open = elements => value => setTypedAttribute(elements.details, 'open', value);

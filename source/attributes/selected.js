@@ -1,3 +1,3 @@
-import { setTyped } from '@javascribble/quantum';
+import { setTypedAttribute } from '@javascribble/quantum';
 
-export const renderSelected = (element, value) => setTyped(element.selectionElement, 'selected', value);
+export const selected = elements => value => setTypedAttribute(elements.selection, 'selected', value);

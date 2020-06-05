@@ -1,1 +1,1 @@
-export const renderName = (element, value) => element.nameElement.innerText = value;
+export const name = elements => value => elements.name.innerText = value;

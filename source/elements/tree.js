@@ -1,33 +1,40 @@
-import { Quantum, define, append, shadow, clone, query, preventDefault } from '@javascribble/quantum';
-import { renderSelected } from '../attributes/selected.js';
-import { renderName } from '../attributes/name.js';
-import { renderOpen } from '../attributes/open.js';
-import { raiseSelect } from '../events/select.js';
+import { Quantum, define } from '@javascribble/quantum';
+import { selected } from '../attributes/selected.js';
+import { name } from '../attributes/name.js';
+import { open } from '../attributes/open.js';
+import { collapse } from '../events/collapse.js';
+import { expand } from '../events/expand.js';
+import { select } from '../events/select.js';
+import { drag } from '../events/drag.js';
 import { tree } from '../templates/tree.js';
 
 export class Tree extends Quantum {
-    static attributes = {
-        name: renderName,
-        open: renderOpen,
-        selected: renderSelected,
+    constructor() {
+        super(tree);
+    }
+
+    static elements = {
+        details: 'details',
+        draggable: '[draggable]',
+        selection: '#selection',
+        collapse: '#collapse',
+        expand: '#expand',
+        menu: '#menu',
+        name: '#name'
     };
 
-    constructor() {
-        super();
+    static attributes = {
+        selected,
+        name,
+        open
+    };
 
-        const root = shadow(this);
-        append(root, clone(tree));
-
-        query(root, '[draggable]').onclick = raiseSelect(this);
-        query(root, '#menu').onclick = preventDefault;
-        query(root, '#expand').onclick = (event) => this.open = true;
-        query(root, '#collapse').onclick = (event) => this.open = false;
-
-        this.detailsElement = query(root, 'details');
-        this.selectionElement = query(root, '#selection');
-        this.nameElement = query(root, '#name');
-        this.nameElement.onclick = preventDefault;
-    }
+    static events = {
+        collapse,
+        expand,
+        select,
+        drag
+    };
 }
 
 define(Tree);
