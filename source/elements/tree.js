@@ -5,7 +5,6 @@ import { open } from '../attributes/open.js';
 import { collapse } from '../events/collapse.js';
 import { expand } from '../events/expand.js';
 import { select } from '../events/select.js';
-import { drag } from '../events/drag.js';
 import { tree } from '../templates/tree.js';
 
 export class Tree extends Quantum {
@@ -32,8 +31,7 @@ export class Tree extends Quantum {
     static events = {
         collapse,
         expand,
-        select,
-        drag
+        select
     };
 }
 
