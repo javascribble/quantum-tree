@@ -1,2 +1,2 @@
-export const expand = (component, elements, dispatcher) => {
+export const expand = (dispatcher, elements, attributes) => {
 };

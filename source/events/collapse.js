@@ -1,2 +1,2 @@
-export const collapse = (component, elements, dispatcher) => {
+export const collapse = (dispatcher, elements, attributes) => {
 };
