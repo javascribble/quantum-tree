@@ -1,4 +1,4 @@
-import { Quantum, define } from '@javascribble/quantum';
+import { Quantum, define } from '../../references/quantum.js';
 import { selected } from '../attributes/selected.js';
 import { name } from '../attributes/name.js';
 import { open } from '../attributes/open.js';

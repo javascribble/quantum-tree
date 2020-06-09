@@ -1,4 +1,4 @@
-import { preventDefault } from '@javascribble/quantum';
+import { preventDefault } from '../../references/quantum.js';
 
 export const select = (dispatcher, elements, attributes) => {
     elements.name.onclick = preventDefault;
