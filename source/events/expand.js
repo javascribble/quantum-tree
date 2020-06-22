@@ -1,2 +1,3 @@
-export const expand = (dispatcher, elements, attributes) => {
+export const expand = (root, dispatch) => {
+    //query(root, '#expand').onclick = preventDefault;
 };

@@ -1,16 +1,10 @@
-import { preventDefault } from '../../references/quantum.js';
+import { query, preventDefault } from '../../references/quantum.js';
 
-export const select = (dispatcher, elements, attributes) => {
-    elements.name.onclick = preventDefault;
-    elements.menu.onclick = preventDefault;
-    elements.draggable.onclick = event => {
+export const select = (root, dispatch) => {
+    query(root, '#name').onclick = preventDefault;
+    query(root, '#menu').onclick = preventDefault;
+    query(root, '[draggable]').onclick = event => {
         preventDefault(event);
-        if (dispatcher()) {
-            if (event.ctrlKey) {
-                attributes.selected = !attributes.selected;
-            } else {
-                attributes.selected = true;
-            }
-        }
+        dispatch();
     };
 };

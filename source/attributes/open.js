@@ -1,3 +1,6 @@
-import { setTypedAttribute } from '../../references/quantum.js';
+import { query, setTypedAttribute } from '../../references/quantum.js';
 
-export const open = elements => value => setTypedAttribute(elements.details, 'open', value);
+export const open = root => {
+    const details = query(root, 'details');
+    return value => setTypedAttribute(details, 'open', value);
+};
