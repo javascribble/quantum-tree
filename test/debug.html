@@ -2,28 +2,14 @@
     <head>
         <link rel="stylesheet" href="/test/debug.css" />
         <script type="module" src="/source/main.js"></script>
-        <script type="module">
-            import { Tree } from '/source/main.js';
-
-            const root = document.querySelector('#root');
-            const add = (object, parent) => {
-                const tree = new Tree();
-                tree.name = object.name;
-                for (const child of object.children) {
-                    add(child, tree)
-                }
-
-                parent.appendChild(tree);
-            };
-
-            fetch('/test/resources/tree.json').then(file => file.json()).then(objects => objects.forEach(object => add(object, root)));
-        </script>
     </head>
     <body>
-        <quantum-tree id="root" name="added by tag">
+        <quantum-tree id="root" name="root">
             <quantum-tree name="branch">
                 <quantum-tree name="nested branch"></quantum-tree>
             </quantum-tree>
         </quantum-tree>
+
+        <script src="/test/debug.js"></script>
     </body>
 </html>

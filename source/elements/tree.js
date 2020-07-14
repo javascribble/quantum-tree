@@ -1,28 +1,47 @@
-import { Quantum, define } from '../../references/quantum.js';
-import { tree } from '../templates/tree.js';
-import { selected } from '../attributes/selected.js';
-import { name } from '../attributes/name.js';
-import { open } from '../attributes/open.js';
-import { collapse } from '../events/collapse.js';
-import { expand } from '../events/expand.js';
-import { select } from '../events/select.js';
+import { Component, setAttribute } from '../../references/quantum.js';
 
-export class Tree extends Quantum {
+export class Tree extends Component {
+    #name;
+    #details;
+    #selection;
+
     constructor() {
-        super(tree);
+        super();
+
+        this.#name = this.shadowRoot.querySelector('#name');
+        this.#details = this.shadowRoot.querySelector('details');
+        this.#selection = this.shadowRoot.querySelector('#selection');
+
+        this.shadowRoot.querySelector('#collapse').onclick = event => event.preventDefault();
+        this.shadowRoot.querySelector('#expand').onclick = event => event.preventDefault();
+        this.shadowRoot.querySelector('#menu').onclick = event => event.preventDefault();
+        this.#name.onclick = preventDefault;
+
+        this.shadowRoot.querySelector('[draggable]').onclick = event => {
+            preventDefault(event);
+            this.dispatchEvent(new Event('select'));
+        };
     }
 
-    static attributes = {
-        selected,
-        name,
-        open
-    };
+    static template = document.querySelector('#quantum-tree');
 
-    static events = {
-        collapse,
-        expand,
-        select
-    };
+    static attributes = [
+        'selected',
+        'name',
+        'open'
+    ];
+
+    nameChangedCallback(value) {
+        this.#name.innerText = value;
+    }
+
+    openChangedCallback(value) {
+        setAttribute(this.#details, 'open', value);
+    }
+
+    selectedChangedCallback(value) {
+        setAttribute(this.#selection, 'selected', value);
+    }
 }
 
-define(Tree);
+customElements.define('quantum-tree', Tree);

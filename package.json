@@ -1,11 +1,12 @@
 {
     "name": "@javascribble/quantum-tree",
     "description": "",
-    "version": "0.1.7",
+    "version": "0.3.7",
     "license": "MIT",
-    "dependencies": {},
+    "dependencies": {
+        "@javascribble/quantum": "^0.4.5"
+    },
     "devDependencies": {
-        "@javascribble/quantum": "^0.3.0",
         "live-server": "*"
     },
     "scripts": {
