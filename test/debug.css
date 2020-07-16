@@ -1,7 +1,4 @@
-:root {
-    --primary-selection-color: lightgrey;
-}
-
 body {
+    visibility: hidden;
     margin: 0;
 }

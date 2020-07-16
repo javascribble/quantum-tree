@@ -1,4 +1,5 @@
-import { Component, setAttribute } from '../../references/quantum.js';
+import { Component, template, setAttribute } from '../../references/quantum.js';
+import html from '../templates/tree.js';
 
 export class Tree extends Component {
     #name;
@@ -23,7 +24,7 @@ export class Tree extends Component {
         };
     }
 
-    static template = document.querySelector('#quantum-tree');
+    static template = template(html);
 
     static attributes = [
         'selected',
