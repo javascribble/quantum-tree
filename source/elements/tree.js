@@ -1,7 +1,6 @@
-import { Component, template, setAttribute } from '../../references/quantum.js';
 import html from '../templates/tree.js';
 
-export class Tree extends Component {
+export class Tree extends quantum.Component {
     #name;
     #details;
     #selection;
@@ -24,25 +23,23 @@ export class Tree extends Component {
         };
     }
 
-    static template = template(html);
+    static template = quantum.template(html);
 
-    static attributes = [
-        'selected',
-        'name',
-        'open'
-    ];
+    static get observedAttributes() { ['name', 'selected', 'open']; }
 
-    nameChangedCallback(value) {
-        this.#name.innerText = value;
-    }
-
-    openChangedCallback(value) {
-        setAttribute(this.#details, 'open', value);
-    }
-
-    selectedChangedCallback(value) {
-        setAttribute(this.#selection, 'selected', value);
+    attributeChangedCallback(attribute, previousValue, currentValue) {
+        switch (attribute) {
+            case 'name':
+                this.#name.innerText = currentValue;
+                break;
+            case 'selected':
+                quantum.setAttribute(this.#selection, attribute, value);
+                break;
+            case 'open':
+                quantum.setAttribute(this.#details, attribute, value);
+                break;
+        }
     }
 }
 
-customElements.define('quantum-tree', Tree);
+quantum.define('quantum-tree', Tree);
