@@ -1,17 +1,20 @@
 import '/node_modules/@javascribble/quantum/source/main.js';
+import '/node_modules/@javascribble/quantum-loader/source/main.js';
 import '/source/main.js';
 
-document.body.style.visibility = 'visible';
-
-const root = document.querySelector('#root');
-const add = (object, parent) => {
-    const tree = new Tree();
-    tree.name = object.name;
-    for (const child of object.children) {
-        add(child, tree)
-    }
-
-    parent.appendChild(tree);
+const branch = {
+    open: true,
+    active: true,
+    name: "json test 1",
+    children: [
+        {
+            name: "json test 2"
+        }
+    ]
 };
 
-fetch('/test/resources/tree.json').then(file => file.json()).then(objects => objects.forEach(object => add(object, root)));
+document.querySelector('#root').addBranch(branch);
+document.querySelectorAll('quantum-tree').forEach(element => {
+    element.addEventListener('input', console.log);
+});
+document.body.style.visibility = 'visible';

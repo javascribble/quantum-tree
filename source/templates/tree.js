@@ -1,42 +1,34 @@
 export default `
 <style>
-    * {
-        user-select: none;
+    :host([open]) ::slotted(*) {
+        display: block;
+    }
+
+    :host([open]) #icon::before {
+        transform: rotate(90deg);
+    }
+
+    :host([active]) #selection {
+        background-color: var(--active-color);
     }
 
     ::slotted(*) {
-        display: inline-block;
+        display: none;
         border-left: solid 1px;
-        margin-left: 5px;
+        margin-left: 6px;
         padding-left: 5px;
-        width: calc(100% - 11px);
     }
 
-    [selected] {
-        background-color: var(--primary-selection-color);
-    }
-
-    [draggable] {
-        flex-grow: 1;
-    }
-
-    summary,
     #name {
         outline: none;
+        user-select: none;
     }
 
-    #title {
-        display: inline-flex;
-        justify-content: space-between;
-        width: calc(100% - 21px);
-    }
-
-    #name {
-        min-width: 20px;
-    }
-
-    #menu {
-        padding-right: 5px;
+    #icon::before {
+        cursor: pointer;
+        content: '\u25B6';
+        display: inline-block;
+        line-height: 1em;
     }
 
     #selection {
@@ -45,25 +37,14 @@ export default `
         left: 0;
         right: 0;
         z-index: -1;
-    }
-
-    .icon {
-        font-size: small;
-        vertical-align: bottom;
-    }
+    }    
 </style>
-<details>
-    <summary>
-        <div id="title">
-            <div id="name" contenteditable></div>
-            <div draggable="true"></div>
-            <div id="menu">
-                <span id="expand" class="icon" title="expand">&#8794;</span>
-                <span id="collapse" class="icon" title="collapse">&#8793;</span>
-            </div>
-        </div>
-        <div id="selection">&nbsp;</div>
-    </summary>
+<div>
+    <div id="selection">&nbsp;</div>
+    <div draggable="true">
+        <span id="icon"></span>
+        <span id="name" contenteditable></span>
+    </div>
     <slot></slot>
-</details>
+</div>
 `;

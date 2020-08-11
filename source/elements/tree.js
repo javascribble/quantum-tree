@@ -2,42 +2,60 @@ import html from '../templates/tree.js';
 
 export class Tree extends quantum.Component {
     #name;
-    #details;
-    #selection;
+    #icon;
 
     constructor() {
         super();
 
         this.#name = this.shadowRoot.querySelector('#name');
-        this.#details = this.shadowRoot.querySelector('details');
-        this.#selection = this.shadowRoot.querySelector('#selection');
+        this.#icon = this.shadowRoot.querySelector('#icon');
 
-        this.shadowRoot.querySelector('#collapse').onclick = event => event.preventDefault();
-        this.shadowRoot.querySelector('#expand').onclick = event => event.preventDefault();
-        this.shadowRoot.querySelector('#menu').onclick = event => event.preventDefault();
-        this.#name.onclick = preventDefault;
+        const draggable = this.shadowRoot.querySelector('[draggable]');
+        draggable.onclick = event => {
+            if (this.dispatchEvent(new Event('select', { cancelable: true }))) {
+                this.active = !this.active;
+            }
+        };
 
-        this.shadowRoot.querySelector('[draggable]').onclick = event => {
-            preventDefault(event);
-            this.dispatchEvent(new Event('select'));
+        this.#name.onclick = event => event.stopPropagation();
+        this.#icon.ondblclick = event => this.toggleAll(!this.open);
+        this.#icon.onclick = event => {
+            this.open = !this.open;
+            event.stopPropagation();
         };
     }
 
     static template = quantum.template(html);
 
-    static get observedAttributes() { ['name', 'selected', 'open']; }
+    static get observedAttributes() { return ['name', 'open', 'active']; }
 
     attributeChangedCallback(attribute, previousValue, currentValue) {
         switch (attribute) {
             case 'name':
                 this.#name.innerText = currentValue;
                 break;
-            case 'selected':
-                quantum.setAttribute(this.#selection, attribute, value);
-                break;
-            case 'open':
-                quantum.setAttribute(this.#details, attribute, value);
-                break;
+        }
+    }
+
+    addBranch(branch) {
+        const tree = new Tree();
+        tree.name = branch.name;
+        tree.open = branch.open;
+        tree.active = branch.active;
+        this.appendChild(tree);
+        if (Array.isArray(branch.children)) {
+            for (const child of branch.children) {
+                tree.addBranch(child);
+            }
+        }
+    }
+
+    toggleAll(value) {
+        this.open = value;
+        for (const [slot, elements] of this.slots) {
+            for (const element of elements) {
+                element.toggleAll(value);
+            }
         }
     }
 }
