@@ -14,7 +14,7 @@ const branch = {
 };
 
 document.querySelector('#root').addBranch(branch);
-document.querySelectorAll('quantum-tree').forEach(element => {
+document.querySelectorAll('quantum-branch').forEach(element => {
     element.addEventListener('input', console.log);
 });
 document.body.style.visibility = 'visible';
