@@ -1,6 +1,6 @@
-import '/node_modules/@javascribble/quantum/source/main.js';
-import '/node_modules/@javascribble/quantum-loader/source/main.js';
-import { Tree } from '/source/main.js';
+import '/node_modules/@javascribble/quantum/source/global.js';
+import '/node_modules/@javascribble/quantum-loader/source/global.js';
+import { Tree } from '/source/global.js';
 
 const parent = new Tree();
 parent.name = "json test 1";
