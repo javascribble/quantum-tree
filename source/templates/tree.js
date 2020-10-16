@@ -8,8 +8,8 @@ export default `
         transform: rotate(90deg);
     }
 
-    :host([active]) #selection {
-        background-color: var(--active-color);
+    :host([active]) #highlight {
+        background-color: var(--background-color);
     }
 
     ::slotted(*) {
@@ -31,20 +31,18 @@ export default `
         line-height: 1em;
     }
 
-    #selection {
+    #highlight {
         display: inline-block;
         position: absolute;
         left: 0;
         right: 0;
         z-index: -1;
-    }    
+    }
 </style>
-<div>
-    <div id="selection">&nbsp;</div>
-    <div draggable="true">
-        <span id="icon"></span>
-        <span id="name" contenteditable></span>
-    </div>
-    <slot></slot>
+<div id="highlight">&nbsp;</div>
+<div draggable="true">
+    <span id="icon"></span>
+    <span id="name" contenteditable></span>
 </div>
+<slot></slot>
 `;

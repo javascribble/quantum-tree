@@ -10,9 +10,13 @@ export class Tree extends quantum.Component {
         this.#name.onclick = event => event.stopPropagation();
 
         const icon = this.shadowRoot.querySelector('#icon');
-        icon.ondblclick = event => this.#doubleClick(!this.open);
         icon.onclick = event => {
-            this.open = !this.open;
+            if (event.detail === 2) {
+                this.toggleAll(this.open);
+            } else {
+                this.open = !this.open;
+            }
+
             event.stopPropagation();
         };
 
@@ -36,11 +40,11 @@ export class Tree extends quantum.Component {
         }
     }
 
-    #doubleClick(open) {
+    toggleAll(open) {
         this.open = open;
         for (const [slot, elements] of this.slots) {
             for (const element of elements) {
-                element.toggle(open);
+                element.toggleAll(open);
             }
         }
     }

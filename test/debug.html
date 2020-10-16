@@ -4,8 +4,11 @@
         <script type="module" src="/test/debug.js"></script>
     </head>
     <body>
-        <quantum-tree id="root" name="root element" open="true">
-            <quantum-tree name="nested element" active="true"></quantum-tree>
+        <quantum-tree name="root element" open>
+            <quantum-tree name="nested element 1"></quantum-tree>
+            <quantum-tree name="nested element 2" open active>
+                <quantum-tree name="nested element 3" active></quantum-tree>
+            </quantum-tree>
         </quantum-tree>
     </body>
 </html>

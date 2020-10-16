@@ -3,6 +3,6 @@ body {
     margin: 0;
 }
 
-quantum-branch {
-    --active-color: lightgrey;
+quantum-tree[active] {
+    --background-color: lightgrey;
 }
