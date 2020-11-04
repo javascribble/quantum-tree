@@ -1,6 +1,7 @@
+import { Component, template, define } from '../import.js';
 import html from '../templates/tree.js';
 
-export class Tree extends quantum.Component {
+export class Tree extends Component {
     #name;
 
     constructor() {
@@ -28,7 +29,7 @@ export class Tree extends quantum.Component {
         };
     }
 
-    static template = quantum.template(html);
+    static template = template(html);
 
     static get observedAttributes() { return ['name', 'open', 'active']; }
 
@@ -50,4 +51,4 @@ export class Tree extends quantum.Component {
     }
 }
 
-quantum.define('quantum-tree', Tree);
+define('quantum-tree', Tree);
