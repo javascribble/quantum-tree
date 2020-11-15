@@ -8,10 +8,10 @@ export class Tree extends Component {
         super();
 
         this.#name = this.shadowRoot.querySelector('#name');
-        this.#name.onclick = event => event.stopPropagation();
+        this.#name.addEventListener('click', event => event.stopPropagation());
 
         const icon = this.shadowRoot.querySelector('#icon');
-        icon.onclick = event => {
+        icon.addEventListener('click', event => {
             if (event.detail === 2) {
                 this.toggleAll(this.open);
             } else {
@@ -19,14 +19,14 @@ export class Tree extends Component {
             }
 
             event.stopPropagation();
-        };
+        });
 
         const draggable = this.shadowRoot.querySelector('[draggable]');
-        draggable.onclick = event => {
+        draggable.addEventListener('click', event => {
             if (this.dispatchEvent(new Event('select', { cancelable: true }))) {
                 this.active = !this.active;
             }
-        };
+        });
     }
 
     static template = template(html);
