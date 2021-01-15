@@ -1,4 +1,3 @@
-import { Component, template, define } from '../import.js';
 import html from '../templates/tree.js';
 
 export class Tree extends Component {
