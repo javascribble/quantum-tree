@@ -20,10 +20,7 @@ export class Tree extends Component {
         });
 
         const draggable = this.shadowRoot.querySelector('[draggable]');
-        this.shadowRoot.addEventListener('click', event => {
-            event.stopPropagation();
-            this.active = !this.active;
-        });
+        draggable.addEventListener('click', event => this.active = !this.active);
 
         enableBranchControls(this);
     }
