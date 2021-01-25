@@ -1,3 +1,4 @@
+import { enableBranchControls } from '../utilities/controls.js';
 import { recurse } from '../utilities/recurse.js';
 import html from '../templates/tree.js';
 
@@ -20,6 +21,8 @@ export class Tree extends Component {
 
         const draggable = this.shadowRoot.querySelector('[draggable]');
         draggable.addEventListener('click', event => this.active = !this.active);
+
+        enableBranchControls(this);
     }
 
     static template = template(html);

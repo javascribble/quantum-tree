@@ -15,6 +15,14 @@ export default `
         padding-left: 5px;
     }
 
+    #highlight {
+        background-color: var(--background-color);
+        position: absolute;
+        left: 0;
+        right: 0;
+        z-index: -1;
+    }
+
     #icon {
         background: none;
         line-height: 1em;
@@ -25,15 +33,6 @@ export default `
 
     #name {
         outline: none;
-    }
-    
-    #highlight {
-        background-color: var(--background-color);
-        display: inline-block;
-        position: absolute;
-        left: 0;
-        right: 0;
-        z-index: -1;
     }
 </style>
 <div id="highlight">&nbsp;</div>
