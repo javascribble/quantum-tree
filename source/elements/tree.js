@@ -1,3 +1,4 @@
+import { recurse } from '../utilities/recurse.js';
 import html from '../templates/tree.js';
 
 export class Tree extends Component {
@@ -11,16 +12,14 @@ export class Tree extends Component {
         this.#icon.addEventListener('click', event => {
             event.stopPropagation();
             if (event.detail === 2) {
-                this.toggleAll(this.open);
+                recurse(this, element => element.open = this.open);
             } else {
                 this.open = !this.open;
             }
         });
 
         const draggable = this.shadowRoot.querySelector('[draggable]');
-        draggable.addEventListener('click', event => {
-            this.active = !this.active;
-        });
+        draggable.addEventListener('click', event => this.active = !this.active);
     }
 
     static template = template(html);
@@ -28,10 +27,8 @@ export class Tree extends Component {
     static get observedAttributes() { return ['name', 'open', 'active']; }
 
     attributeChangedCallback(attribute, previousValue, currentValue) {
-        switch (attribute) {
-            case 'name':
-                this.#name.innerText = currentValue;
-                break;
+        if (attribute === 'name') {
+            this.#name.innerText = currentValue;;
         }
     }
 
@@ -39,13 +36,11 @@ export class Tree extends Component {
         this.#icon.disabled = currentElements.length === 0;
     }
 
-    toggleAll(open) {
-        this.open = open;
-        for (const [slot, elements] of this.slots) {
-            for (const element of elements) {
-                element.toggleAll?.(open);
-            }
-        }
+    import(model) {
+    }
+
+    export() {
+
     }
 }
 

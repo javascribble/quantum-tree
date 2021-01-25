@@ -3,6 +3,10 @@ body {
     margin: 0;
 }
 
+quantum-tree {
+    --background-color: none;
+}
+
 quantum-tree[active] {
     --background-color: lightgrey;
 }

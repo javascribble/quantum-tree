@@ -8,10 +8,6 @@ export default `
         transform: rotate(90deg);
     }
 
-    :host([active]) #highlight {
-        background-color: var(--background-color);
-    }
-
     ::slotted(*) {
         display: none;
         border-left: solid 1px;
@@ -32,6 +28,7 @@ export default `
     }
     
     #highlight {
+        background-color: var(--background-color);
         display: inline-block;
         position: absolute;
         left: 0;
