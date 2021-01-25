@@ -4,9 +4,6 @@ body {
 }
 
 quantum-tree {
-    --background-color: none;
-}
-
-quantum-tree[active] {
-    --background-color: lightgrey;
+    --hover-color: lightgrey;
+    --active-color: lightblue;
 }

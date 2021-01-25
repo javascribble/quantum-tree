@@ -1,26 +1,24 @@
 export default `
 <style>
-    :host([open]) ::slotted(*) {
-        display: block;
-    }
-
     :host([open]) #icon {
         transform: rotate(90deg);
     }
 
-    ::slotted(*) {
-        display: none;
-        border-left: solid 1px;
-        margin-left: 5px;
-        padding-left: 5px;
+    :host([active]) #title {
+        background-color: var(--active-color);
+    }    
+
+    :host([open]) ::slotted(*) {
+        display: block;
     }
 
-    #highlight {
-        background-color: var(--background-color);
-        position: absolute;
-        left: 0;
-        right: 0;
-        z-index: -1;
+    ::slotted(*) {
+        display: none;
+        padding-left: 10px;
+    }
+    
+    #title:hover {
+        background-color: var(--hover-color);
     }
 
     #icon {
@@ -35,8 +33,7 @@ export default `
         outline: none;
     }
 </style>
-<div id="highlight">&nbsp;</div>
-<div draggable="true">
+<div id="title" draggable="true">
     <button id="icon" disabled>\u25B6</button>
     <span id="name" contenteditable></span>
 </div>

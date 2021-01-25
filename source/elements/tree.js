@@ -20,7 +20,10 @@ export class Tree extends Component {
         });
 
         const draggable = this.shadowRoot.querySelector('[draggable]');
-        draggable.addEventListener('click', event => this.active = !this.active);
+        this.shadowRoot.addEventListener('click', event => {
+            event.stopPropagation();
+            this.active = !this.active;
+        });
 
         enableBranchControls(this);
     }
@@ -37,13 +40,6 @@ export class Tree extends Component {
 
     slotChangedCallback(slot, addedElements, deletedElements, currentElements) {
         this.#icon.disabled = currentElements.length === 0;
-    }
-
-    import(model) {
-    }
-
-    export() {
-
     }
 }
 
