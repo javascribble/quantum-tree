@@ -4,7 +4,7 @@ export default `
         display: block;
     }
 
-    :host([open]) #icon::before {
+    :host([open]) #icon {
         transform: rotate(90deg);
     }
 
@@ -15,22 +15,22 @@ export default `
     ::slotted(*) {
         display: none;
         border-left: solid 1px;
-        margin-left: 6px;
+        margin-left: 5px;
         padding-left: 5px;
+    }
+
+    #icon {
+        background: none;
+        line-height: 1em;
+        outline: none;
+        border: none;
+        padding: 0;
     }
 
     #name {
         outline: none;
-        user-select: none;
     }
-
-    #icon::before {
-        cursor: pointer;
-        content: '\u25B6';
-        display: inline-block;
-        line-height: 1em;
-    }
-
+    
     #highlight {
         display: inline-block;
         position: absolute;
@@ -41,7 +41,7 @@ export default `
 </style>
 <div id="highlight">&nbsp;</div>
 <div draggable="true">
-    <span id="icon"></span>
+    <button id="icon" disabled>\u25B6</button>
     <span id="name" contenteditable></span>
 </div>
 <slot></slot>

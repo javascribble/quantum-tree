@@ -1,30 +1,25 @@
 import html from '../templates/tree.js';
 
 export class Tree extends Component {
-    #name;
+    #name = this.shadowRoot.querySelector('#name');
+    #icon = this.shadowRoot.querySelector('#icon');
 
     constructor() {
         super();
 
-        this.#name = this.shadowRoot.querySelector('#name');
         this.#name.addEventListener('click', event => event.stopPropagation());
-
-        const icon = this.shadowRoot.querySelector('#icon');
-        icon.addEventListener('click', event => {
+        this.#icon.addEventListener('click', event => {
+            event.stopPropagation();
             if (event.detail === 2) {
                 this.toggleAll(this.open);
             } else {
                 this.open = !this.open;
             }
-
-            event.stopPropagation();
         });
 
         const draggable = this.shadowRoot.querySelector('[draggable]');
         draggable.addEventListener('click', event => {
-            if (this.dispatchEvent(new Event('select', { cancelable: true }))) {
-                this.active = !this.active;
-            }
+            this.active = !this.active;
         });
     }
 
@@ -40,11 +35,15 @@ export class Tree extends Component {
         }
     }
 
+    slotChangedCallback(slot, addedElements, deletedElements, currentElements) {
+        this.#icon.disabled = currentElements.length === 0;
+    }
+
     toggleAll(open) {
         this.open = open;
         for (const [slot, elements] of this.slots) {
             for (const element of elements) {
-                element.toggleAll(open);
+                element.toggleAll?.(open);
             }
         }
     }
