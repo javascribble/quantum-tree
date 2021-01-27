@@ -2,6 +2,8 @@ import { enableBranchControls } from '../utilities/controls.js';
 import { recurse } from '../utilities/recurse.js';
 import html from '../templates/tree.js';
 
+const { Component, template, define } = quantum;
+
 export class Tree extends Component {
     #name = this.shadowRoot.querySelector('#name');
     #icon = this.shadowRoot.querySelector('#icon');
