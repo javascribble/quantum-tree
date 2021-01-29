@@ -1,3 +1,3 @@
-import * as tree from './elements/tree.js';
+import { Tree } from './elements/tree.js';
 
-Object.assign(quantum, tree);
+Quantum.Tree = Tree;

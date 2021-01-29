@@ -2,9 +2,7 @@ import { enableBranchControls } from '../utilities/controls.js';
 import { recurse } from '../utilities/recurse.js';
 import html from '../templates/tree.js';
 
-const { Component, template, define } = quantum;
-
-export class Tree extends Component {
+export class Tree extends Quantum {
     #name = this.shadowRoot.querySelector('#name');
     #icon = this.shadowRoot.querySelector('#icon');
 
@@ -27,8 +25,6 @@ export class Tree extends Component {
         enableBranchControls(this);
     }
 
-    static template = template(html);
-
     static get observedAttributes() { return ['name', 'open', 'active']; }
 
     attributeChangedCallback(attribute, previousValue, currentValue) {
@@ -42,4 +38,4 @@ export class Tree extends Component {
     }
 }
 
-define('quantum-tree', Tree);
+Tree.define('quantum-tree', html);
