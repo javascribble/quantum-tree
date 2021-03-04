@@ -1,6 +1,5 @@
 import { enableBranchControls } from '../utilities/controls.js';
 import { recurse } from '../utilities/recurse.js';
-import html from '../templates/tree.js';
 
 export class Tree extends Quantum {
     #name = this.shadowRoot.querySelector('#name');
@@ -37,5 +36,3 @@ export class Tree extends Quantum {
         this.#icon.disabled = currentElements.length === 0;
     }
 }
-
-Tree.define('quantum-tree', html);
