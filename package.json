@@ -10,7 +10,7 @@
         "live-server": "*"
     },
     "scripts": {
-        "build": "cd ../rollup-quantum-build && npm start ../quantum-tree/source/main.js ../quantum-tree/build",
+        "build": "cd ../rollup-quantum-build && npm start ../quantum-tree/source ../quantum-tree/build",
         "start": "live-server --open=/test/debug.html",
         "postversion": "npm publish --access public"
     },
