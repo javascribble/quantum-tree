@@ -1,5 +1,5 @@
-import '/node_modules/@javascribble/quantum/source/main.js';
-import '/source/main.js';
+import '/node_modules/@javascribble/quantum/bundles/main-window.js';
+import '/bundles/main.js';
 
 const parent = document.createElement('quantum-tree');
 parent.name = "js test 1";
